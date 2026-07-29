@@ -37,7 +37,6 @@ var import_path = __toESM(require("path"), 1);
 var import_multer = __toESM(require("multer"), 1);
 var import_mammoth = __toESM(require("mammoth"), 1);
 var import_genai = require("@google/genai");
-var import_vite = require("vite");
 var upload = (0, import_multer.default)({ storage: import_multer.default.memoryStorage() });
 async function startServer() {
   const app = (0, import_express.default)();
@@ -112,7 +111,8 @@ Ch\u1EC9 tr\u1EA3 v\u1EC1 duy nh\u1EA5t chu\u1ED7i JSON c\xF3 c\u1EA5u tr\xFAc:
     }
   });
   if (process.env.NODE_ENV !== "production") {
-    const vite = await (0, import_vite.createServer)({
+    const { createServer: createViteServer } = await import("vite");
+    const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa"
     });
